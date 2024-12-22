@@ -8,6 +8,10 @@ import { redirect } from "next/navigation";
 import { signIn } from "~/server/auth";
 import { AuthError } from "next-auth";
 
+export async function signOut() {
+    await signOut();
+}
+
 export async function authenticate(
   prevState: string | undefined,
   formData: FormData,
