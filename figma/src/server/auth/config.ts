@@ -3,6 +3,7 @@ import { type DefaultSession, type NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import DiscordProvider from "next-auth/providers/discord";
 import { signInSchema } from "~/schema";
+import bcrypt from "bcryptjs"
 
 import { db } from "~/server/db";
 
@@ -47,8 +48,13 @@ export const authConfig = {
               email: email
             }
           })
-          const isValid = ""
+          const passwordMatch = await bcrypt.compare(password, user?.password ?? "");
+          if(!passwordMatch){
+            return null;
+          }
+          return user;
         } catch (error) {
+          return null;
           console.log(error)
         }
       }
@@ -63,6 +69,9 @@ export const authConfig = {
      * @see https://next-auth.js.org/providers/github
      */
   ],
+  session : {
+    strategy: "jwt"
+  },
   adapter: PrismaAdapter(db),
   callbacks: {
     session: ({ session, user }) => ({
