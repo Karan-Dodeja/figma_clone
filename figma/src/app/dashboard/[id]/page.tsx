@@ -7,9 +7,8 @@ export default async function Page({ params }: { params: ParamsType }) {
   const session = await auth();
 
   return (
-    <></>
-    // <Room>
-    //     <Canvas></Canvas>
-    // </Room>
-  )
+    <Room roomId={"room" + id}>
+      // <Canvas></Canvas>
+    </Room>
+  );
 }
