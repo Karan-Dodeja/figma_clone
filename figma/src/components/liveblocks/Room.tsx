@@ -13,7 +13,7 @@ export function Room({
   roomId: string;
 }) {
   return (
-    <LiveblocksProvider authEndpoint="">
+    <LiveblocksProvider authEndpoint="/api/liveblocks-auth">
       <RoomProvider
         id={roomId}
         initialPresence={{
