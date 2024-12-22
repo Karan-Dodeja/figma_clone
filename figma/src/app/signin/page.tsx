@@ -16,6 +16,7 @@ export default function page() {
           Sign In
         </h1>
         <form action={formAction} className="space-y-4">
+          <input type="hidden" name="redirectTo" value="/dashboard" />
           <div className="relative h-fit">
             <input
               type="email"
